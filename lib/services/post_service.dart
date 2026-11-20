@@ -7,7 +7,11 @@ import 'package:http/http.dart' as http;
 import '../models/post_model.dart';
 
 class PostService {
-  static const String apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+  // Real API by default. Overridable with --dart-define=API_URL=... for local testing.
+  static const String apiUrl = String.fromEnvironment(
+    'API_URL',
+    defaultValue: 'https://jsonplaceholder.typicode.com/posts',
+  );
 
   Future<List<Post>> getPosts() async {
     var box = await Hive.openBox<Post>('postsBox');

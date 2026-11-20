@@ -21,11 +21,15 @@ an app restart and airplane mode.
 
 ## Screenshots
 
+Screenshots were taken on an Android emulator (x86_64, Android 9). `jsonplaceholder.typicode.com` was not reachable from my network for apps, so for the screenshots the emulator was pointed at a local copy of the same API response with `--dart-define=API_URL=http://127.0.0.1:8000/posts`. The app code is the same and defaults to the real URL. For the offline screenshots I cut the emulator's connection to that source and restarted the app, so it could only read from Hive.
+
 ### 1. Posts loaded from the API
 ![Posts online](screenshots/01-posts-online.png)
 
 ### 2. Console confirms it cached to Hive
-![Console API](screenshots/02-console-api.png)
+```
+Loaded from API and cached to Hive: 100
+```
 
 ### 3. Tapping the star marks a favorite
 The star fills in straight away, no reload needed.
@@ -44,7 +48,10 @@ Opened from the star button in the AppBar.
 ![Posts offline](screenshots/06-offline-posts.png)
 
 ### 7. Console confirms it came from Hive
-![Console offline](screenshots/07-console-offline.png)
+```
+API Failed, reason: ClientException with SocketException: Connection refused (OS Error: Connection refused, errno = 111) (API not reachable)
+Loaded from Hive offline: 100
+```
 
 ### 8. Favorites survive offline and restart
 ![Favorites offline](screenshots/08-offline-favorites.png)
